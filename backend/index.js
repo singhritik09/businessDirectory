@@ -59,6 +59,23 @@ async function getUsers()
   console.log(users)
 }
 
+async function getByName(nm)
+{
+  const biz=await Business.find({name:nm})
+  console.log(biz)
+}
+
+async function getByLocation(loc)
+{
+  const biz=await Business.find({location:loc})
+  console.log(biz)
+}
+
+async function getByTag(tg)
+{
+  const biz=await Business.find({"tags" : {$regex : tg}})
+  console.log(biz)
+}
 app.get('/', (req, res) => {
   res.send('Hello, Express!');
 });
@@ -82,6 +99,25 @@ app.get('/users',(req,res)=>{
 app.get('/allBusiness',(req,res)=>{
   getAllBusiness();
   res.send("Fetched Business details")
+})
+
+app.get('/getName',(req,res)=>
+{
+  const name=req.body.name
+  getByName(name);
+  res.send("Query Results")
+})
+
+app.get('/getLocation',(req,res)=>{
+  const location=req.body.location
+  getByLocation(location)
+  res.send("Query Results")
+})
+
+app.get('/getTags',(req,res)=>{
+  const tag=req.body.tag
+  getByTag(tag)
+  res.send("Query Results")
 })
 
 app.post('/api/signup', async (req, res) => {
