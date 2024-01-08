@@ -8,7 +8,7 @@ const Login = () => {
       e.preventDefault();
   
       // Send a POST request to the server to check login
-      const response = await fetch('http://localhost:1337/api/login', {
+      const response = await fetch('http://localhost:8000/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -19,12 +19,10 @@ const Login = () => {
       const data = await response.json();
   
       if (data.success) {
-        // Login successful, perform any necessary actions (e.g., redirect)
         alert('Login successful');
         window.location.href = '/home'
 
       } else {
-        // Login failed, display an error message
         alert('Check email and password')
       }
     };

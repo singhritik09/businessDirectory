@@ -21,6 +21,6 @@ const User = new mongoose.Schema
                   
     })
 
-    const collection = new mongoose.model("users", User);
+    const collection = new mongoose.model("users", User); //Creating instance -> users table
     module.exports=collection;
     
